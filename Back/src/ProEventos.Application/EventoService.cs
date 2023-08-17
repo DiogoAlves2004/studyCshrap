@@ -77,9 +77,11 @@ namespace ProEventos.Application
             {
                 var evento = await _eventoPersist.GetEventoByIdAsync(eventoId, false);
                 if (evento == null) throw new Exception("EventoDto para delete não encontrado.");
-                var eventoRetorno = _mapper.Map<EventoDto>(evento);
-                _geralPersist.Delete<EventoDto>(eventoRetorno);
+                
+                _geralPersist.Delete<Evento>(evento);
+
                 return await _geralPersist.SaveChangesAsync();
+
             }
             catch (Exception ex)
             {
